@@ -1,4 +1,4 @@
-fastbook==0.0.18
+fastai>=2.0.0
 fastapi==0.63.0
 gunicorn==20.1.0
 uvicorn==0.13.4
