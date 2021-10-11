@@ -1,7 +1,7 @@
-import fastbook
-fastbook.setup_book()
+#import fastbook
+#fastbook.setup_book()
 from fastbook import *
-from fastai.vision.widgets import *
+#from fastai.vision.widgets import *
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, FileResponse
 #import uvicorn
