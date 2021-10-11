@@ -1,4 +1,9 @@
-fastapi==0.63.0
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.1+cpu
+torchvision==0.9.1+cpu
+fastai
+voila
+ipywidgets
 gunicorn==20.1.0
 uvicorn==0.13.4
 urllib3==1.25.11
