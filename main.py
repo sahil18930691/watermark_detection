@@ -8,12 +8,12 @@ from fastapi.responses import HTMLResponse, FileResponse
 
 import pathlib
 
-import cv2
-import urllib
-import numpy as np
-import urllib.request as ur
-import json
-from urllib.request import urlopen
+#import cv2
+#import urllib
+#import numpy as np
+#import urllib.request as ur
+#import json
+#from urllib.request import urlopen
 
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
@@ -29,7 +29,7 @@ learn_inf = load_learner(EXPORT_PATH)
 @app.get("/")
 async def root():
     return "Hello World!!!"
-
+'''
 @app.get("/predict_from_url")
 def predict_from_url(image_url:str):
     ## read as HTTPResponse 
@@ -49,7 +49,14 @@ def predict_from_url(image_url:str):
     diction={"Result":str(gg[0])}
     ghg1=json.dumps(diction)
     data1 = json.loads(ghg1.replace("\'", '"'))
-    return(data1)
+    return(data1)'''
+
+@app.get("/predict_from_url")
+def hello_world(image_url:str):
+    response = requests.get(image_url)
+    img = PILImage.create(response.content)
+    predictions = learn_inf.predict(img)
+    return predictions[0]    
 
 '''
 async def predict_image(image_url: str):

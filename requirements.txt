@@ -5,9 +5,7 @@ fastai
 voila
 ipywidgets
 fastbook==0.0.18
+gunicorn==20.1.0
 uvicorn==0.13.4
-urllib3==1.25.11
-numpy==1.19.5
 pathlib==1.0.1
 fastapi==0.63.0
-opencv-python==4.5.3.56
