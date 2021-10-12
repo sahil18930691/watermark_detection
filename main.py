@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, FileResponse
 #import uvicorn
 
-import pathlib
+#import pathlib
 
 #import cv2
 #import urllib
@@ -15,6 +15,9 @@ import pathlib
 #import json
 #from urllib.request import urlopen
 
+
+
+'''
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 
@@ -22,8 +25,19 @@ app = FastAPI()
 
 EXPORT_PATH = pathlib.Path("export.pkl")
 
+learn_inf = load_learner(EXPORT_PATH)'''
 
-learn_inf = load_learner(EXPORT_PATH)
+#import os
+
+#path = os.getcwd()
+
+#path = Path ('./')
+from pathlib import Path
+
+folder_path = Path('./export.pkl')
+
+learn_inf = load_learner(folder_path)
+
 
 
 @app.get("/")
