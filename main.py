@@ -32,6 +32,9 @@ learn_inf = load_learner(EXPORT_PATH)'''
 #path = os.getcwd()
 
 #path = Path ('./')
+
+app = FastAPI()
+
 from pathlib import Path
 
 folder_path = Path('./export.pkl')
