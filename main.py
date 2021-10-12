@@ -18,6 +18,8 @@ from fastapi.responses import HTMLResponse, FileResponse
 
 
 '''
+#for windows
+import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 
@@ -27,11 +29,10 @@ EXPORT_PATH = pathlib.Path("export.pkl")
 
 learn_inf = load_learner(EXPORT_PATH)'''
 
-#import os
 
-#path = os.getcwd()
 
-#path = Path ('./')
+
+#for server
 
 app = FastAPI()
 
@@ -72,9 +73,14 @@ def predict_from_url(image_url:str):
 def hello_world(image_url:str):
     response = requests.get(image_url)
     img = PILImage.create(response.content)
-    print(1)
-    predictions = learn_inf.predict(img)
-    return predictions[0]    
+    img_resize=img.resize((256,256))
+    timg = TensorImage(image2tensor(img_resize))
+    tpil = PILImage.create(timg)
+    predictions = learn_inf.predict(tpil)
+    predict_dict={"Result":str(predictions[0])}
+    predict_json=json.dumps(predict_dict)
+    result = json.loads(predict_json.replace("\'", '"'))
+    return result   
 
 '''
 async def predict_image(image_url: str):
