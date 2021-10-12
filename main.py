@@ -55,6 +55,7 @@ def predict_from_url(image_url:str):
 def hello_world(image_url:str):
     response = requests.get(image_url)
     img = PILImage.create(response.content)
+    print(1)
     predictions = learn_inf.predict(img)
     return predictions[0]    
 
