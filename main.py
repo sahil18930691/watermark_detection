@@ -27,8 +27,8 @@ app = FastAPI()
 
 EXPORT_PATH = pathlib.Path("export.pkl")
 
-learn_inf = load_learner(EXPORT_PATH)'''
-
+learn_inf = load_learner(EXPORT_PATH)
+'''
 
 
 
@@ -77,7 +77,7 @@ def hello_world(image_url:str):
     timg = TensorImage(image2tensor(img_resize))
     tpil = PILImage.create(timg)
     predictions = learn_inf.predict(tpil)
-    predict_dict={"Result":str(predictions[0])}
+    predict_dict={"Result":str(predictions[0]),"image_url":image_url}
     predict_json=json.dumps(predict_dict)
     result = json.loads(predict_json.replace("\'", '"'))
     return result   
