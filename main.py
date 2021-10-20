@@ -25,7 +25,7 @@ pathlib.PosixPath = pathlib.WindowsPath
 
 app = FastAPI()
 
-EXPORT_PATH = pathlib.Path("export1.pkl")
+EXPORT_PATH = pathlib.Path("export.pkl")
 
 learn_inf = load_learner(EXPORT_PATH)'''
 
@@ -72,6 +72,7 @@ def predict_from_url(image_url:str):
 @app.get("/predict_from_url")
 def hello_world(image_url:str):
     response = requests.get(image_url)
+
     img = PILImage.create(response.content)
     img_resize=img.resize((256,256))
     timg = TensorImage(image2tensor(img_resize))
