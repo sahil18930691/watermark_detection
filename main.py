@@ -25,10 +25,10 @@ pathlib.PosixPath = pathlib.WindowsPath
 
 app = FastAPI()
 
-EXPORT_PATH = pathlib.Path("export.pkl")
+EXPORT_PATH = pathlib.Path("export1.pkl")
 
-learn_inf = load_learner(EXPORT_PATH)
-'''
+learn_inf = load_learner(EXPORT_PATH)'''
+
 
 
 
