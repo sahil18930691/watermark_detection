@@ -38,7 +38,7 @@ app = FastAPI()
 
 from pathlib import Path
 
-folder_path = Path('./export.pkl')
+folder_path = Path('./export1.pkl')
 
 learn_inf = load_learner(folder_path)
 
