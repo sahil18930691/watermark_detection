@@ -27,8 +27,8 @@ app = FastAPI()
 
 EXPORT_PATH = pathlib.Path("export.pkl")
 
-learn_inf = load_learner(EXPORT_PATH)'''
-
+learn_inf = load_learner(EXPORT_PATH)
+'''
 
 
 
@@ -70,9 +70,8 @@ def predict_from_url(image_url:str):
     return(data1)'''
 
 @app.get("/predict_from_url")
-def hello_world(image_url:str):
+def predict_from_url(image_url:str):
     response = requests.get(image_url)
-
     img = PILImage.create(response.content)
     img_resize=img.resize((256,256))
     timg = TensorImage(image2tensor(img_resize))
@@ -82,6 +81,20 @@ def hello_world(image_url:str):
     predict_json=json.dumps(predict_dict)
     result = json.loads(predict_json.replace("\'", '"'))
     return result   
+
+
+#predictions = learn_inf.predict(download_url("https://sqy.s3-ap-southeast-1.amazonaws.com/secondaryPortal/637654244036079570-2408210553235323"))
+#print(predictions)
+
+@app.get("/predict_url")
+def download_url1(image_url:str):
+    #img = ' "%s" ' % image_url.strip()
+    predictions = learn_inf.predict(download_url(image_url))
+    predict_dict={"Result":str(predictions[0]),"image_url":image_url}
+    predict_json=json.dumps(predict_dict)
+    result = json.loads(predict_json.replace("\'", '"'))
+    return result 
+
 
 '''
 async def predict_image(image_url: str):
