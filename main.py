@@ -38,15 +38,18 @@ app = FastAPI()
 
 from pathlib import Path
 
-folder_path = Path('./export.pkl')
-
-learn_inf = load_learner(folder_path)
-
+try:
+    folder_path = Path('./export.pkl')
+    learn_inf = load_learner(folder_path)
+except:
+    print("could not load model")
 
 
 @app.get("/")
 async def root():
     return "Hello World!!!"
+
+
 '''
 @app.get("/predict_from_url")
 def predict_from_url(image_url:str):
@@ -70,6 +73,7 @@ def predict_from_url(image_url:str):
     return(data1)'''
 
 
+
 @app.get("/predict_from_url")
 def predict_from_url(image_url:str):
     response = requests.get(image_url)
@@ -81,14 +85,19 @@ def predict_from_url(image_url:str):
     predict_dict={"Result":str(predictions[0]),"image_url":image_url}
     predict_json=json.dumps(predict_dict)
     result = json.loads(predict_json.replace("\'", '"'))
-    return result   
+    return result
+
 
 
 #predictions = learn_inf.predict(download_url("https://sqy.s3-ap-southeast-1.amazonaws.com/secondaryPortal/637654244036079570-2408210553235323"))
 #print(predictions)
 
 @app.get("/predict_url")
-def download_url1(image_url:str):
+async def watermark_detection(image_url:str):
+    """ 
+    #### The endpoint takes image url as inputs in the form of JSON and detects watermarks\n
+    1. predict_url: Url of the image.
+    """
     #img = ' "%s" ' % image_url.strip()
     predictions = learn_inf.predict(download_url(image_url))
     predict_dict={"Result":str(predictions[0]),"image_url":image_url}
