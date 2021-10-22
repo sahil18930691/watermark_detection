@@ -95,7 +95,7 @@ def predict_from_url(image_url:str):
 @app.get("/predict_url")
 async def watermark_detection(image_url:str):
     """ 
-    #### The endpoint takes image url as inputs in the form of JSON and detects watermarks\n
+    #### The endpoint takes image url as inputs and detects watermarks\n
     1. predict_url: Url of the image.
     """
     #img = ' "%s" ' % image_url.strip()
