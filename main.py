@@ -69,6 +69,7 @@ def predict_from_url(image_url:str):
     data1 = json.loads(ghg1.replace("\'", '"'))
     return(data1)'''
 
+
 @app.get("/predict_from_url")
 def predict_from_url(image_url:str):
     response = requests.get(image_url)
